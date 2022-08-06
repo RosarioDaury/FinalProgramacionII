@@ -6,10 +6,10 @@ namespace FinalProgramacionII.Models
     public class Login
     {
         [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; } = null!;
+        [Display(Name = "UserNameEntidad")]
+        public string UserNameEntidad { get; set; } = null!;
         [Required]
-        [Display(Name = "Password")]
-        public string Password { get; set; } = null!;
+        [Display(Name = "PasswordEntidad")]
+        public string PasswordEntidad { get; set; } = null!;
     }
 }

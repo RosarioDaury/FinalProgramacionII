@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FinalProgramacionII.Models
 {
+    //Tabla MAPPING (Fields de la tabla con notaciones de datos para validaciones)
     public partial class Entidade
     {
         [Required]

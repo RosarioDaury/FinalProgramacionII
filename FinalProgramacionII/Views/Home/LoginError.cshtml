@@ -1,11 +1,9 @@
 ﻿@model FinalProgramacionII.Models.Login
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login Error";
 }
 
 <div class="text-center">
-    <br />
-    <br />
     <h1 class="display-4">Login</h1>
     <br />
     <br />
@@ -13,14 +11,15 @@
     {
         <div class="row">
             <div class="col-md-12"> 
+                <p class="text-danger">Username o Clave Incorrecta</p>
                 <div style="width:30%; margin:auto;">
                     @Html.TextBoxFor(d => d.UserNameEntidad, "", new {@class = "form-control", @placeholder = "Username"})
-                    @Html.ValidationMessageFor(d => d.UserNameEntidad, null, new {@class = "danger"})
+                    @Html.ValidationMessageFor(d => d.UserNameEntidad, null, new {@class = "text-danger"})
                 </div>
                 <br/>
                 <div style="width:30%; margin:auto;">
                     @Html.TextBoxFor(d => d.PasswordEntidad, "", new {@type="password", @class = "form-control", placeholder = "Contrasena"})
-                    @Html.ValidationMessageFor(d => d.PasswordEntidad, null, new {@class = "danger"})
+                    @Html.ValidationMessageFor(d => d.PasswordEntidad, null, new {@class = "text-danger"})
                 </div>
 
                 <div style="padding-top:2%">

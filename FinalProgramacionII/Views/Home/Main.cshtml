@@ -1,0 +1,61 @@
+﻿@model List<Entidade>
+@{
+    ViewData["Title"] = "Main";
+}
+
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <h1><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CRUD</a></h1>
+        </div>
+        <div class="collapse navbar-collapse" style="width:40%;">
+            <ul class="navbar-nav justify-content-evenly">
+              <li style="margin-right: 5px;">
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Nuevo">Insertar Nuevo</a>
+              </li>
+              <li style="margin-right: 5px;">
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Acerca">Acerca de</a>
+              </li>
+              <li>
+                <a class="btn btn-danger" asp-controller="Home" asp-action="SalirHome">Salir</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Descripcion</th>
+                <th>Username</th>
+                <th>Clave</th>
+                <th>Rol Usuario</th>
+                <th>Comentario</th>
+                <th>Status</th>
+                <th>Eleminable</th>
+                <th>Fecha Registro</th>
+                <th></th>
+            </tr>
+            @foreach(var el in Model)
+            {
+                <tr>
+                    <td>@el.Descripcion</td>
+                    <td>@el.UserNameEntidad</td>
+                    <td>@el.PasswordEntidad</td>
+                    <td>@el.RolUserEntidad</td>
+                    <td>@el.Comentario</td>
+                    <td>@el.Status</td>
+                    <td>@el.NiEliminable</td>
+                    <td>@el.FechaRegistro</td>
+                    <td><a class="btn btn-primary" asp-controller="Home" asp-action="Detalles">Ver Mas</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
