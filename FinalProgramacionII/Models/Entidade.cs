@@ -20,7 +20,9 @@ namespace FinalProgramacionII.Models
         [Required]
         public int NumeroDocumento { get; set; }
         [Required]
+        [Phone]
         public string Telefonos { get; set; } = null!;
+        [Url]
         public string? UrlpaginaWeb { get; set; }
         public string? Urlfacebook { get; set; }
         public string? Urlinstagram { get; set; }

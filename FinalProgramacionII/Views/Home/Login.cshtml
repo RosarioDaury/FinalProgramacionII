@@ -1,0 +1,32 @@
+﻿@model FinalProgramacionII.Models.Login
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+    <br />
+    <br />
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-12"> 
+                <div style="width:30%; margin:auto;">
+                    @Html.TextBoxFor(d => d.Username, "", new {@class = "form-control", @placeholder = "Username"})
+                    @Html.ValidationMessageFor(d => d.Username, null, new {@class = "danger"})
+                </div>
+                <br/>
+                <div style="width:30%; margin:auto;">
+                    @Html.TextBoxFor(d => d.Password, "", new {@type="password", @class = "form-control", placeholder = "Contrasena"})
+                    @Html.ValidationMessageFor(d => d.Password, null, new {@class = "danger"})
+                </div>
+
+                <div style="padding-top:2%">
+                    <input type="submit" class="btn btn-primary" value="Iniciar Sesion"/>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="Registrarse">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
