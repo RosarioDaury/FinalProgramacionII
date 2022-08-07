@@ -102,8 +102,8 @@ namespace FinalProgramacionII.Controllers
                         modelo.CodigoPostal = "";
                         modelo.CoordenadasGps = "";
                         modelo.LimiteCredito = 1;
-                        modelo.UserNameEntidad = data.Username;
-                        modelo.PasswordEntidad = data.Password;
+                        modelo.UserNameEntidad = data.Username.Trim();
+                        modelo.PasswordEntidad = data.Password.Trim();
                         modelo.RolUserEntidad = "";
                         modelo.Comentario = "";
                         modelo.Status = "";
@@ -115,7 +115,7 @@ namespace FinalProgramacionII.Controllers
                         context.SaveChanges();
                     }
                     //Luego de guardar de nuevo para el LOGIN
-                    return Redirect("/Login");
+                    return Redirect("Home/Login");
                 }
                 return View(data);
             }

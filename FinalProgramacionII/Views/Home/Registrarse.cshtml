@@ -18,7 +18,10 @@
             </div>
             <div>
                 @Html.LabelFor(d => d.Password)
-                @Html.TextBoxFor(d => d.Password, "", new {@class = "form-control"})
+                @Html.PasswordFor(d => d.Password, new {@class = "form-control"})
+            </div>
+            <div>
+                <input type="submit" value="Registrarse"/>
             </div>
         </div>
     </div>
