@@ -65,16 +65,82 @@ namespace FinalProgramacionII.Controllers
             return View();
         }
 
+        //Controlador para la pagina de registro, Crear un nuevo username y Clave
+        public IActionResult Registrarse()
+        {
+            return View();
+        }
+
+        //Controlador para registrar nuevo usuario antes de logearse
+        [HttpPost]
+        public IActionResult Registrarse(Registrar data)
+        {
+            //Instacia de la clase que sirve de modelo de la tabla
+            Entidade modelo = new Entidade();
+
+            try
+            {
+                //Si formulario es valido continuar
+                if (ModelState.IsValid)
+                {
+                    using(SellPointContext context = new SellPointContext())
+                    {
+                        //la tabla tiene filas requeridas asi que hay que llenar los requeridos
+                        //porque no hay una tabla aparte solo para el username y password
+                        modelo.Descripcion = "Pendiente Requerido";
+                        modelo.Direccion = "Pendiente Requerido";
+                        modelo.Localidad = "";
+                        modelo.TipoEntidad = "";
+                        modelo.TipoDocumento = "";
+                        modelo.NumeroDocumento = 001;
+                        modelo.Telefonos = "Pendiente Requerido";
+                        modelo.UrlpaginaWeb = "";
+                        modelo.Urlfacebook = "";
+                        modelo.Urlinstagram = "";
+                        modelo.Urltwitter = "";
+                        modelo.UrltikTok = "";
+                        modelo.CodigoPostal = "";
+                        modelo.CoordenadasGps = "";
+                        modelo.LimiteCredito = 1;
+                        modelo.UserNameEntidad = data.Username;
+                        modelo.PasswordEntidad = data.Password;
+                        modelo.RolUserEntidad = "";
+                        modelo.Comentario = "";
+                        modelo.Status = "";
+                        modelo.NiEliminable = true;
+                        modelo.FechaRegistro = DateTime.Today;
+
+                        //Agregar registro y guardar
+                        context.Entidades.Add(modelo);
+                        context.SaveChanges();
+                    }
+                    //Luego de guardar de nuevo para el LOGIN
+                    return Redirect("/Login");
+                }
+                return View(data);
+            }
+            catch(Exception excp)
+            {
+                throw new Exception(excp.Message);     
+            }
+
+        }
+
+        //Pagina principal del CRUD (Info minima, opcion de ver mas informacion)
         public IActionResult Main()
         {
+            //var para guardar data del query
             List<Entidade> data;
             using(var context = new SellPointContext())
             {
+                //Query, resultado guardado en data
                 data = context.Entidades.FromSqlRaw("SELECT * FROM dbo.Entidades").ToList();
             }
+            //Data del query como parametro a la vista (data se usa en la vista)
             return View(data);
         }
 
+        //Controller para boton "Salir"
         public IActionResult SalirHome()
         {
             return Redirect("/Home");

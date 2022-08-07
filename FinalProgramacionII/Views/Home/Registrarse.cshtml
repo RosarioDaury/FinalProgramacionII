@@ -1,0 +1,25 @@
+﻿@model FinalProgramacionII.Models.Registrar
+
+@{
+    ViewData["Title"] = "Registrarse";
+}
+<br/>
+<div class="text-center">
+    <h2>Registrar Nuevo Usuario</h2>
+</div>
+<br/>
+
+@using(Html.BeginForm("Registrarse", "Home", FormMethod.Post)){
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.Username)
+                @Html.TextBoxFor(d => d.Username, "", new {@class = "form-control"})
+            </div>
+            <div>
+                @Html.LabelFor(d => d.Password)
+                @Html.TextBoxFor(d => d.Password, "", new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+}

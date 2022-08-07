@@ -39,7 +39,7 @@ namespace FinalProgramacionII.Models
         public string? RolUserEntidad { get; set; }
         public string? Comentario { get; set; }
         public string? Status { get; set; }
-        public bool? NiEliminable { get; set; }
+        public bool NiEliminable { get; set; }
         public DateTime? FechaRegistro { get; set; }
     }
 }
