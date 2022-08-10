@@ -41,7 +41,7 @@ namespace FinalProgramacionII.Controllers
                     using(SellPointContext context = new SellPointContext())
                     {
                         //Query (Recuerda hacer store procedure desde la DB)
-                        data = context.Entidades.FromSqlRaw("SELECT * FROM dbo.Entidades WHERE UserNameEntidad = {0}", credenciales.UserNameEntidad).ToList();
+                        data = context.Entidades.FromSqlRaw("EXEC ACCESO {0}, {1}", credenciales.UserNameEntidad, credenciales.PasswordEntidad).ToList();
                         //Si Hay data Log in, Si No Pagina con el Error
                         if(data.Count > 0)
                         {
@@ -85,34 +85,7 @@ namespace FinalProgramacionII.Controllers
                 {
                     using(SellPointContext context = new SellPointContext())
                     {
-                        //la tabla tiene filas requeridas asi que hay que llenar los requeridos
-                        //porque no hay una tabla aparte solo para el username y password
-                        modelo.Descripcion = "Pendiente Requerido";
-                        modelo.Direccion = "Pendiente Requerido";
-                        modelo.Localidad = "";
-                        modelo.TipoEntidad = "";
-                        modelo.TipoDocumento = "";
-                        modelo.NumeroDocumento = 001;
-                        modelo.Telefonos = "Pendiente Requerido";
-                        modelo.UrlpaginaWeb = "";
-                        modelo.Urlfacebook = "";
-                        modelo.Urlinstagram = "";
-                        modelo.Urltwitter = "";
-                        modelo.UrltikTok = "";
-                        modelo.CodigoPostal = "";
-                        modelo.CoordenadasGps = "";
-                        modelo.LimiteCredito = 1;
-                        modelo.UserNameEntidad = data.Username.Trim();
-                        modelo.PasswordEntidad = data.Password.Trim();
-                        modelo.RolUserEntidad = "";
-                        modelo.Comentario = "";
-                        modelo.Status = "";
-                        modelo.NiEliminable = true;
-                        modelo.FechaRegistro = DateTime.Today;
-
-                        //Agregar registro y guardar
-                        context.Entidades.Add(modelo);
-                        context.SaveChanges();
+                        context.Entidades.FromSqlRaw("EXEC REGISTRAR {0}, {1}", data.Username.Trim(), data.Password.Trim());
                     }
                     //Luego de guardar de nuevo para el LOGIN
                     return Redirect("Home/Login");
@@ -134,7 +107,7 @@ namespace FinalProgramacionII.Controllers
             using(var context = new SellPointContext())
             {
                 //Query, resultado guardado en data
-                data = context.Entidades.FromSqlRaw("SELECT * FROM dbo.Entidades").ToList();
+                data = context.Entidades.FromSqlRaw("EXEC GETALL").ToList();
             }
             //Data del query como parametro a la vista (data se usa en la vista)
             return View(data);
