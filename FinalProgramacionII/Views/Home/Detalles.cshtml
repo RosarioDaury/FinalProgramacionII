@@ -1,0 +1,80 @@
+﻿@model List<Entidade>
+@{
+    ViewData["Title"] = "Detalles";
+}
+<br/>
+@foreach(var el in Model){
+    <div class="border-bottom box-shadow d-flex justify-content-between">
+        <h2>Detail Page</h2>
+        <div style="padding-right: 1rem;">
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Editar">Editar</a>
+            <a class="btn btn-danger" href="`/Home/Delete/@el.IdEntidades">Borrar</a>
+        </div>
+    </div>
+    <br/>
+    <div class="d-flex justify-content-around">
+        <div class="card" style="width: 25rem;">
+          <div class="card-header">
+            Informacion Documentos
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Fecha Registro:</b> @el.FechaRegistro</li>
+            <li class="list-group-item"><b>Tipo Entidad:</b> @el.TipoEntidad</li>
+            <li class="list-group-item"><b>Tipo Documento:</b> @el.TipoDocumento</li>
+            <li class="list-group-item"><b>Numero Documento:</b> @el.NumeroDocumento</li>
+          </ul>
+        </div>
+        <br/>
+        <div class="card" style="width: 35rem;">
+          <div class="card-header">
+            Informacion Direccion
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Direccion:</b> @el.Direccion</li>
+            <li class="list-group-item"><b>Localidad:</b> @el.Localidad</li>
+            <li class="list-group-item"><b>Codigo Postal:</b> @el.CodigoPostal</li>
+            <li class="list-group-item"><b>Coordenadas GPS:</b> @el.CoordenadasGps</li>
+          </ul>
+        </div>
+        <br/>
+        <div class="card" style="width: 20rem;">
+          <div class="card-header">
+            Credenciales
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Username:</b> @el.UserNameEntidad</li>
+            <li class="list-group-item"><b>Password:</b> @el.PasswordEntidad</li>
+          </ul>
+        </div>
+    </div>
+    <br/>
+    <div class="d-flex justify-content-start gap-1">
+        <div class="card" style="width: 30rem;">
+          <div class="card-header">
+            Informacion Contacto
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Telefono:</b> @el.Telefonos</li>
+            <li class="list-group-item"><b>WebPage:</b> @el.UrlpaginaWeb</li>
+            <li class="list-group-item"><b>Facebook:</b> @el.Urlfacebook</li>
+            <li class="list-group-item"><b>Instagram:</b> @el.Urlinstagram</li>
+            <li class="list-group-item"><b>TikTok:</b> @el.UrltikTok</li>
+            <li class="list-group-item"><b>Twitter:</b> @el.Urltwitter</li>
+          </ul>
+        </div>
+        <br/>
+        <div class="card" style="width: 40rem;">
+          <div class="card-header">
+            Informacion Extra
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Limite Credito:</b> @el.LimiteCredito</li>
+            <li class="list-group-item"><b>Descripcion:</b> @el.Descripcion</li>
+            <li class="list-group-item"><b>Comentario:</b> @el.Comentario</li>
+            <li class="list-group-item"><b>Status:</b> @el.Status</li>
+            <li class="list-group-item"><b>Eliminable:</b> @el.NiEliminable</li>
+          </ul>
+        </div>
+    </div>    
+}
+

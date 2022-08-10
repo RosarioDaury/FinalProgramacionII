@@ -113,7 +113,51 @@ namespace FinalProgramacionII.Controllers
             return View(data);
         }
 
-        //Controller para boton "Salir"
+        //Controlador para la vista que muestra informacion completa de un registro en especifico
+        public IActionResult Detalles(int id)
+        {
+            List<Entidade> model;
+            using(var context =new SellPointContext())
+            {
+                //procedure para conseguir un record en especifico
+                model = context.Entidades.FromSqlRaw("EXEC GETONE {0}", id).ToList();
+            }
+            //retornar la visto con la data del registro pasado por parametro
+            return View(model);
+        }
+
+        //Controller to edit record (this one send to the view with the form)
+        public IActionResult Edit(int id)
+        {
+            List<Entidade> toEdit;
+            using (var context = new SellPointContext())
+            {
+                toEdit = context.Entidades.FromSqlRaw("EXEC GETONE {0}", id).ToList();
+            }
+            return View(toEdit);
+        }
+
+        //Controller to delete one record
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                using(var context = new SellPointContext())
+                {
+                    //Delete record with the ID especified, is not possible to get an ID 
+                    //that doesnt exist cause the delete botton is inside the record detail
+                    context.Entidades.FromSqlRaw("EXEC DEL {0}", id);
+                }
+                //After Deleted the record Redirect to the View with all the records
+                return Redirect("Home/Main");
+            }
+            catch (Exception exc)
+            {
+                throw new Exception(exc.Message);
+            }
+        }
+
+        //Controller "Salir" Botton
         public IActionResult SalirHome()
         {
             return Redirect("/Home");
