@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
 
 namespace FinalProgramacionII.Controllers
 {
@@ -85,7 +86,8 @@ namespace FinalProgramacionII.Controllers
                 {
                     using(SellPointContext context = new SellPointContext())
                     {
-                        context.Entidades.FromSqlRaw("EXEC REGISTRAR {0}, {1}", data.Username.Trim(), data.Password.Trim());
+                        //Ejecutar procedure que guarda nuevo USUARIO Y CLAVE
+                        var results = context.Database.ExecuteSqlRaw("EXEC REGISTRAR {0}, {1}", data.Username.Trim(), data.Password.Trim());
                     }
                     //Luego de guardar de nuevo para el LOGIN
                     return Redirect("/Home/Login");
@@ -146,10 +148,15 @@ namespace FinalProgramacionII.Controllers
                 {
                     //Delete record with the ID especified, is not possible to get an ID 
                     //that doesnt exist cause the delete botton is inside the record detail
-                    context.Entidades.FromSqlRaw("EXEC DEL {0}", id);
+                    var toDelete = context.Entidades.Find(id);
+                    if(toDelete != null)
+                    {
+                        context.Entidades.Remove(toDelete);
+                        context.SaveChanges();
+                    }
                 }
                 //After Deleted the record Redirect to the View with all the records
-                return Redirect("Home/Main");
+                return Redirect("/Home/Main");
             }
             catch (Exception exc)
             {
