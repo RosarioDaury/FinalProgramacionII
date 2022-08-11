@@ -1,0 +1,63 @@
+﻿@model List<Entidade>
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <h1><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Detalles</a></h1>
+        </div>
+        <div class="collapse navbar-collapse" style="width:40%;">
+            <ul class="navbar-nav justify-content-evenly">
+              <li style="margin-right: 5px;">
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Nuevo">Volver</a>
+              </li>
+              <li style="margin-right: 5px;">
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Acerca">Acerca de</a>
+              </li>
+              <li>
+                <a class="btn btn-danger" asp-controller="Home" asp-action="SalirHome">Salir</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            @foreach(var el in Model)
+            {
+                <tr>@el.IdEntidades @el.UserNameEntidad</tr>
+                <tr>
+                    <th>Id : @el.IdEntidades</th>
+                    <th>Descripción: @el.Descripcion</th>
+                    <th>Dirección: @el.Direccion</th>
+                    <th>Localidad: @el.Localidad</th>
+                    <th>Tipo de entidad: @el.TipoEntidad</th>
+                    <th>Tipo de documento: @el.TipoDocumento</th>
+                    <th>Numero de documento: @el.NumeroDocumento</th>
+                    <th>Telefono: @el.Telefonos</th>
+                    <th>Pagina Web: @el.UrlpaginaWeb</th>
+                    <th>Facebook: @el.Urlfacebook</th>
+                    <th>Instagram: @el.Urlinstagram</th>
+                    <th>Twitter: @el.Urltwitter</th>
+                    <th>Tiktok: @el.UrltikTok</th>
+                    <th>Codigo Postal: @el.CodigoPostal</th>
+                    <th>Coordenadas GPS: @el.CoordenadasGps</th>
+                    <th>Limite de credito: @el.LimiteCredito</th>
+                    <th>Username: @el.UserNameEntidad</th>
+                    <th>Contraseña: @el.PasswordEntidad</th>
+                    <th>Rol Usuario: @el.RolUserEntidad</th>
+                    <th>Comentario: @el.Comentario</th>
+                    <th>Status: @el.Status</th>
+                    <th>Eleminable: @el.NiEliminable</th>
+                    <th>Fecha Registro: @el.FechaRegistro</th>
+                    <th><a class="btn btn-primary" asp-controller="Home" asp-action="Main">Volver</a></th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
