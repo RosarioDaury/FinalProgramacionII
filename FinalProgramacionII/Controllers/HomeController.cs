@@ -88,7 +88,7 @@ namespace FinalProgramacionII.Controllers
                         context.Entidades.FromSqlRaw("EXEC REGISTRAR {0}, {1}", data.Username.Trim(), data.Password.Trim());
                     }
                     //Luego de guardar de nuevo para el LOGIN
-                    return Redirect("Home/Login");
+                    return Redirect("/Home/Login");
                 }
                 return View(data);
             }
