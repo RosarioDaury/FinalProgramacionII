@@ -1,13 +1,12 @@
-﻿@model List<Entidade>
+﻿@model FinalProgramacionII.Models.ModeloMain
 @{
     ViewData["Title"] = "Main";
 }
 
-
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
-            <h1><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CRUD</a></h1>
+            <h3>Welcome @Model.username</h3>
         </div>
         <div class="collapse navbar-collapse" style="width:40%;">
             <ul class="navbar-nav justify-content-evenly">
@@ -15,7 +14,7 @@
                 <a class="btn btn-primary" asp-controller="Home" asp-action="Nuevo">Insertar Nuevo</a>
               </li>
               <li style="margin-right: 5px;">
-                <a class="btn btn-primary" asp-controller="Home" asp-action="Acerca">Acerca de</a>
+                <a class="btn btn-primary" asp-controller="Home" asp-action="About">Acerca de</a>
               </li>
               <li>
                 <a class="btn btn-danger" asp-controller="Home" asp-action="SalirHome">Salir</a>
@@ -39,7 +38,7 @@
                 <th>Fecha Registro</th>
                 <th></th>
             </tr>
-            @foreach(var el in Model)
+            @foreach(var el in Model.data)
             {
                 <tr>
                     <td>@el.Descripcion</td>

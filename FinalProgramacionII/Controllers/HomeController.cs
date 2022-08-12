@@ -2,14 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using System.Data.SqlClient;
 
 namespace FinalProgramacionII.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -46,6 +44,7 @@ namespace FinalProgramacionII.Controllers
                         //Si Hay data Log in, Si No Pagina con el Error
                         if(data.Count > 0)
                         {
+                            HttpContext.Session.SetString("Username", credenciales.UserNameEntidad);
                             return Redirect("/Home/Main");
                         }
                     }
@@ -112,7 +111,10 @@ namespace FinalProgramacionII.Controllers
                 data = context.Entidades.FromSqlRaw("EXEC GETALL").ToList();
             }
             //Data del query como parametro a la vista (data se usa en la vista)
-            return View(data);
+            ModeloMain dat = new ModeloMain();
+            dat.data = data;
+            dat.username = HttpContext.Session.GetString("Username");
+            return View(dat);
         }
 
         //Controlador para la vista que muestra informacion completa de un registro en especifico
@@ -168,6 +170,12 @@ namespace FinalProgramacionII.Controllers
         public IActionResult SalirHome()
         {
             return Redirect("/Home");
+        }
+
+        //Controller para information Page
+        public IActionResult About()
+        {
+            return View();
         }
         public IActionResult Privacy()
         {
