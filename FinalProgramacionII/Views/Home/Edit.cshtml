@@ -34,8 +34,8 @@
             </li>
             <li class="list-group-item"><b>Tipo Documento:</b> 
                 <select id ="@el.TipoDocumento">
-               <option value="Físicas">RCN</option>
-               <option value="Mercantil">Pasaporte</option>
+               <option value="RCN">RCN</option>
+               <option value="Pasaporte">Pasaporte</option>
                 </select>
             </li>
             <li class="list-group-item"><b>Numero Documento:</b>  @Html.EditorFor(d => @el.NumeroDocumento)</li>
@@ -90,8 +90,8 @@
             <li class="list-group-item"><b>Comentario:</b>  @Html.EditorFor(d => @el.Comentario)</li>
             <li class="list-group-item"><b>Status:</b> 
                 <select id ="@el.Status">
-               <option value="Físicas">Activo</option>
-               <option value="Mercantil">Inactivo</option>
+               <option value="Activo">Activo</option>
+               <option value="Inactivo">Inactivo</option>
                 </select> </li>
             <li class="list-group-item"><b>Eliminable:</b>  @Html.EditorFor(d => @el.NiEliminable)</li>
           </ul>
