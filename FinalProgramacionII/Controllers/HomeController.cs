@@ -138,7 +138,62 @@ namespace FinalProgramacionII.Controllers
             {
                 toEdit = context.Entidades.FromSqlRaw("EXEC GETONE {0}", id).ToList();
             }
-            return View(toEdit);
+            return View(toEdit[0]);
+        }
+
+        //Controller to manage the post request of the Edit
+        [HttpPost]
+        public IActionResult Edit(Entidade data)
+        {
+            //Validate the Limite de credito is more than 0 cannot be 0 or less
+            if (data.LimiteCredito > 0)
+            {
+                //Updating Record (Using the MVC Functionality allows to not expose query
+                //and is better to control than a store procedure (This query even as a procedure 
+                //turns out to be huge and take to many paramenters)
+                using(var context = new SellPointContext())
+                {
+                    var toEdit = context.Entidades.Find(data.IdEntidades);
+                    toEdit.Descripcion = data.Descripcion;
+                    toEdit.Direccion = data.Direccion;
+                    toEdit.Localidad = data.Localidad;
+                    toEdit.TipoEntidad = data.TipoEntidad;
+                    toEdit.TipoDocumento = data.TipoDocumento;
+                    toEdit.NumeroDocumento = data.NumeroDocumento;
+                    toEdit.Telefonos = data.Telefonos;
+                    toEdit.UrlpaginaWeb = data.UrlpaginaWeb;
+                    toEdit.Urlfacebook = data.Urlfacebook;
+                    toEdit.Urlinstagram = data.Urlinstagram;
+                    toEdit.Urltwitter = data.Urltwitter;
+                    toEdit.UrltikTok = data.UrltikTok;
+                    toEdit.CodigoPostal = data.CodigoPostal;
+                    toEdit.CoordenadasGps = data.CoordenadasGps;
+                    toEdit.LimiteCredito = data.LimiteCredito;
+                    toEdit.UserNameEntidad = data.UserNameEntidad;
+                    toEdit.PasswordEntidad = data.PasswordEntidad;
+                    toEdit.RolUserEntidad = data.RolUserEntidad;
+                    toEdit.Comentario = data.Comentario;
+                    toEdit.Status = data.Status;
+                    toEdit.NiEliminable = data.NiEliminable;
+                    toEdit.FechaRegistro = data.FechaRegistro;
+
+                    context.Entry(toEdit).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+                }
+                return Redirect("/Home/Detalles/" + data.IdEntidades);
+            }
+            return Redirect("/Home/EditError/" + data.IdEntidades);
+        }
+
+        //View for the Error of the Edit Controller
+        public IActionResult EditError(int id)
+        {
+            List<Entidade> toEdit;
+            using (var context = new SellPointContext())
+            {
+                toEdit = context.Entidades.FromSqlRaw("EXEC GETONE {0}", id).ToList();
+            }
+            return View(toEdit[0]);
         }
 
         //Controller to delete one record

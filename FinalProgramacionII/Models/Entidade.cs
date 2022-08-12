@@ -23,7 +23,6 @@ namespace FinalProgramacionII.Models
         [Required]
         [Phone]
         public string Telefonos { get; set; } = null!;
-        [Url]
         public string? UrlpaginaWeb { get; set; }
         public string? Urlfacebook { get; set; }
         public string? Urlinstagram { get; set; }
