@@ -1,7 +1,103 @@
-﻿@model FinalProgramacionII.Models.Entidade
+@model List<Entidade>
+
 @{
     ViewData["Title"] = "Edit";
 }
+<br/>
 
-<h1>Edit</h1>
+<h1>Editar</h1>
+<br/>
+@foreach(var el in Model){
+
+@using (Html.BeginForm("Edit","Home",FormMethod.Post)){
+    
+    <div class="border-bottom box-shadow d-flex justify-content-between">
+        <h2>Detail Page</h2>
+        <div style="padding-right: 1rem;">
+            <input type="submit" value="Guardar" class="btn btn-success"/>
+        </div>
+    </div>
+        <br/>
+        <div class="d-flex justify-content-around">
+            <div class="card" style="width: 25rem;">
+          <div class="card-header">
+            Informacion Documentos
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Fecha Registro:</b>  @Html.EditorFor(d => @el.FechaRegistro)</li>
+            <li class="list-group-item"><b>Tipo Entidad:</b>
+            <select id ="@el.TipoEntidad">
+               <option value="Físicas">Físicas</option>
+               <option value="Mercantil">Mercantil</option>
+               <option value="Cooperativas">Cooperativas</option>
+            </select>
+            </li>
+            <li class="list-group-item"><b>Tipo Documento:</b> 
+                <select id ="@el.TipoDocumento">
+               <option value="Físicas">RCN</option>
+               <option value="Mercantil">Pasaporte</option>
+                </select>
+            </li>
+            <li class="list-group-item"><b>Numero Documento:</b>  @Html.EditorFor(d => @el.NumeroDocumento)</li>
+          </ul>
+        </div>
+        <br/>
+        <div class="card" style="width: 35rem;">
+          <div class="card-header">
+            Informacion Direccion
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Direccion:</b>  @Html.EditorFor(d => @el.Direccion)</li>
+            <li class="list-group-item"><b>Localidad:</b>  @Html.EditorFor(d => @el.Localidad)</li>
+            <li class="list-group-item"><b>Codigo Postal:</b>  @Html.EditorFor(d => @el.CodigoPostal)</li>
+            <li class="list-group-item"><b>Coordenadas GPS:</b>  @Html.EditorFor(d => @el.CodigoPostal)</li>
+          </ul>
+        </div>
+        <br/>
+        <div class="card" style="width: 20rem;">
+          <div class="card-header">
+            Credenciales
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Username:</b>  @Html.EditorFor(d => @el.UserNameEntidad)</li>
+            <li class="list-group-item"><b>Password:</b>  @Html.EditorFor(d => @el.PasswordEntidad)</li>
+          </ul>
+        </div>
+    </div>
+    <br/>
+    <div class="d-flex justify-content-start gap-1">
+        <div class="card" style="width: 30rem;">
+          <div class="card-header">
+            Informacion Contacto
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Telefono:</b>  @Html.EditorFor(d => @el.Telefonos)</li>
+            <li class="list-group-item"><b>WebPage:</b>  @Html.EditorFor(d => @el.UrlpaginaWeb)</li>
+            <li class="list-group-item"><b>Facebook:</b>  @Html.EditorFor(d => @el.Urlfacebook)</li>
+            <li class="list-group-item"><b>Instagram:</b>  @Html.EditorFor(d => @el.Urlinstagram)</li>
+            <li class="list-group-item"><b>TikTok:</b>  @Html.EditorFor(d => @el.UrltikTok)</li>
+            <li class="list-group-item"><b>Twitter:</b>  @Html.EditorFor(d => @el.Urltwitter)</li>
+            </ul>
+        </div>
+        <br/>
+        <div class="card" style="width: 40rem;">
+          <div class="card-header">
+            Informacion Extra
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Limite Credito:</b>  @Html.EditorFor(d => @el.LimiteCredito)</li>
+            <li class="list-group-item"><b>Descripcion:</b>  @Html.EditorFor(d => @el.Descripcion)</li>
+            <li class="list-group-item"><b>Comentario:</b>  @Html.EditorFor(d => @el.Comentario)</li>
+            <li class="list-group-item"><b>Status:</b> 
+                <select id ="@el.Status">
+               <option value="Físicas">Activo</option>
+               <option value="Mercantil">Inactivo</option>
+                </select> </li>
+            <li class="list-group-item"><b>Eliminable:</b>  @Html.EditorFor(d => @el.NiEliminable)</li>
+          </ul>
+    </div>
+</div>
+
+}
+}
 
