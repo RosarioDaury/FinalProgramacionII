@@ -6,12 +6,12 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
-            <h3>Welcome @Model.username</h3>
+            <h3>Welcome, @Model.username</h3>
         </div>
         <div class="collapse navbar-collapse" style="width:40%;">
             <ul class="navbar-nav justify-content-evenly">
               <li style="margin-right: 5px;">
-                <a class="btn btn-primary" asp-controller="Home" asp-action="Nuevo">Insertar Nuevo</a>
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Create">Insertar Nuevo</a>
               </li>
               <li style="margin-right: 5px;">
                 <a class="btn btn-primary" asp-controller="Home" asp-action="About">Acerca de</a>
@@ -28,11 +28,9 @@
     <div class="col-md-12">
         <table class="table">
             <tr>
-                <th>Descripcion</th>
                 <th>Username</th>
                 <th>Clave</th>
                 <th>Rol Usuario</th>
-                <th>Comentario</th>
                 <th>Status</th>
                 <th>Eleminable</th>
                 <th>Fecha Registro</th>
@@ -41,11 +39,9 @@
             @foreach(var el in Model.data)
             {
                 <tr>
-                    <td>@el.Descripcion</td>
                     <td>@el.UserNameEntidad</td>
                     <td>@el.PasswordEntidad</td>
                     <td>@el.RolUserEntidad</td>
-                    <td>@el.Comentario</td>
                     <td>@el.Status</td>
                     <td>@el.NiEliminable</td>
                     <td>@el.FechaRegistro</td>

@@ -1,19 +1,16 @@
-@model Entidade
-
+﻿@model FinalProgramacionII.Models.Entidade
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<br/>
-@using (Html.BeginForm("Edit","Home",FormMethod.Post)){
-    <div class="border-bottom box-shadow d-flex justify-content-between">
-        <h1>Editar</h1>
+@using (Html.BeginForm("Create", "Home", FormMethod.Post)){
+     <div class="border-bottom box-shadow d-flex justify-content-between">
+        <h1>Insertar Nuevo Registro</h1>
         <div style="padding-right: 1rem;">
             <input type="submit" value="Guardar" class="btn btn-success"/>
         </div>
     </div>
         <br/>
-        <input type="hidden" value="@Model.IdEntidades" name="IdEntidades"/>
         <div class="d-flex justify-content-around">
             <div class="card" style="width: 25rem;">
           <div class="card-header">
@@ -108,7 +105,4 @@
           </ul>
     </div>
 </div>
-
 }
-
-

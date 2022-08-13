@@ -7,7 +7,6 @@ namespace FinalProgramacionII.Models
     //Tabla MAPPING (Fields de la tabla con notaciones de datos para validaciones)
     public partial class Entidade
     {
-        [Required]
         public int IdEntidades { get; set; }
         [Required]
         [StringLength(120)]
@@ -30,6 +29,7 @@ namespace FinalProgramacionII.Models
         public string? UrltikTok { get; set; }
         public string? CodigoPostal { get; set; }
         public string? CoordenadasGps { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a Limit Credit greater than {1}")]
         public int? LimiteCredito { get; set; }
         [Required]
         public string UserNameEntidad { get; set; } = null!;
